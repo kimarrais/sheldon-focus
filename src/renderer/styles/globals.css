@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --superficie-fundo: #F5F6FA;
+    --superficie-padrao: #FFFFFF;
+    --marca-laranja: #FB7213;
+    --marca-dourado: #FEB14A;
+    --marca-pessego: #FECCAA;
+    --marca-marrom: #55321E;
+    --texto-principal: #242424;
+    --texto-secundario: #6D6D6D;
+    --foco-fundo: #2D2E30;
+    --foco-controle: #404244;
+    --evento-fundo: #DFF3FE;
+    --evento-texto: #034163;
+    --icone-padrao: #141B34;
+  }
+
+  :root,
+  .light {
+    --background: 228 33% 97%;
+    --foreground: 0 0% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 14%;
+
+    --primary: 24 97% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 228 33% 97%;
+    --secondary-foreground: 0 0% 14%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 43%;
+
+    --accent: 24 95% 83%;
+    --accent-foreground: 24 97% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 24 97% 53%;
+
+    --radius: 1.25rem;
+  }
+
+  .dark {
+    --background: 225 10% 9%;
+    --foreground: 220 20% 96%;
+
+    --card: 225 8% 14%;
+    --card-foreground: 220 20% 96%;
+
+    --popover: 225 9% 13%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 8% 17%;
+    --secondary-foreground: 220 15% 90%;
+
+    --muted: 225 8% 17%;
+    --muted-foreground: 220 10% 62%;
+
+    --accent: 24 70% 18%;
+    --accent-foreground: 24 96% 68%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 225 8% 20%;
+    --input: 225 8% 20%;
+    --ring: 24 95% 53%;
+
+    --superficie-fundo: #141518;
+    --superficie-padrao: #1F2024;
+    --texto-principal: #F3F4F6;
+    --texto-secundario: #9CA3AF;
+
+    --radius: 1rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+    user-select: none;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  input,
+  textarea {
+    user-select: text;
+  }
+}
+
+/* Electron Frameless Window Drag Regions */
+.app-drag {
+  -webkit-app-region: drag;
+}
+
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Transparent Desktop Dynamic Island Window */
+html.island-window,
+html.island-window body {
+  background: transparent !important;
+  background-color: transparent !important;
+  overflow: hidden !important;
+}
+
+.island-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.island-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.island-scroll::-webkit-scrollbar-thumb {
+  background: rgba(3, 65, 99, 0.22);
+  border-radius: 9999px;
+}
+
+.island-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(3, 65, 99, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .island-motion,
+  .island-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Scrollbar Utilities */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Soft Light Scrollbar (gray track & thumb, orange on hover/drag — never black) */
+.sheldon-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #D5D9E2 #F1F3F7;
+}
+
+.sheldon-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sheldon-scroll::-webkit-scrollbar-track {
+  background: #F1F3F7;
+  border-radius: 9999px;
+}
+
+.sheldon-scroll::-webkit-scrollbar-thumb {
+  background: #CFD4DF;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.sheldon-scroll::-webkit-scrollbar-thumb:hover,
+.sheldon-scroll::-webkit-scrollbar-thumb:active {
+  background: #FB7213;
+}
+
+/* Invisible-at-rest Calendar Scrollbar — appears only on hover/scroll/active */
+.calendar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.calendar-scroll:hover,
+.calendar-scroll.is-scrolling {
+  scrollbar-color: #D1D5DB #F1F3F7;
+}
+
+.calendar-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.calendar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+.calendar-scroll:hover::-webkit-scrollbar-track,
+.calendar-scroll.is-scrolling::-webkit-scrollbar-track {
+  background: #F1F3F7;
+}
+
+.calendar-scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 9999px;
+  transition: background-color 0.22s ease;
+}
+
+.calendar-scroll:hover::-webkit-scrollbar-thumb,
+.calendar-scroll.is-scrolling::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+}
+
+.calendar-scroll:hover::-webkit-scrollbar-thumb:hover,
+.calendar-scroll.is-scrolling::-webkit-scrollbar-thumb:hover,
+.calendar-scroll::-webkit-scrollbar-thumb:active {
+  background: #FB7213;
+}
+
+@keyframes drawerPanelIn {
+  from {
+    opacity: 0.75;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-drawer-in {
+  animation: drawerPanelIn 0.16s ease-out forwards;
+}
+
+/* Global default scrollbar — soft light gray, orange on hover/active */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D5D9E2;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #353740;
+}
+
+.dark .sheldon-scroll {
+  scrollbar-color: #353740 #1A1B1F;
+}
+
+.dark .sheldon-scroll::-webkit-scrollbar-track {
+  background: #1A1B1F;
+}
+
+.dark .sheldon-scroll::-webkit-scrollbar-thumb {
+  background: #353740;
+}
+
+.dark .calendar-scroll:hover::-webkit-scrollbar-track,
+.dark .calendar-scroll.is-scrolling::-webkit-scrollbar-track {
+  background: #1A1B1F;
+}
+
+.dark .calendar-scroll:hover::-webkit-scrollbar-thumb,
+.dark .calendar-scroll.is-scrolling::-webkit-scrollbar-thumb {
+  background: #3A3D47;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background: #FB7213;
+}

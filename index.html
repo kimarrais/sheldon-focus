@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:;" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Sheldon: Focus &amp; Procrastination Killer</title>
+  <script>
+    (function () {
+      var isIsland = new URLSearchParams(window.location.search).get('window') === 'island';
+      if (isIsland) {
+        document.documentElement.classList.add('island-window');
+        return;
+      }
+      try {
+        var savedTheme = localStorage.getItem('sheldon_theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.remove('light');
+          document.documentElement.classList.add('dark');
+        }
+        if (sessionStorage.getItem('sheldon_boot_played') === '1') {
+          document.documentElement.classList.add('skip-boot-splash');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html.island-window,
+    html.island-window body {
+      background: transparent !important;
+      background-color: transparent !important;
+      overflow: hidden !important;
+    }
+
+    html.dark body {
+      background-color: #141517;
+      color: #f3f4f6;
+    }
+
+    html.island-window #sheldon-boot-splash,
+    html.skip-boot-splash #sheldon-boot-splash {
+      display: none !important;
+    }
+
+    #sheldon-boot-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background-color: #FB7317;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      -webkit-app-region: drag;
+      user-select: none;
+    }
+
+    #sheldon-boot-splash.bar-hidden .splash-bar-wrap {
+      opacity: 0;
+      transform: scaleX(0.92);
+    }
+
+    .splash-bar-wrap {
+      width: 210px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.25);
+      overflow: hidden;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .splash-bar-fill {
+      width: 48%;
+      height: 100%;
+      border-radius: 999px;
+      background: #ffffff;
+      animation: sheldonSplashSlide 1.15s ease-in-out infinite;
+    }
+
+    @keyframes sheldonSplashSlide {
+      0% {
+        transform: translateX(-110%);
+      }
+      50% {
+        transform: translateX(85%);
+      }
+      100% {
+        transform: translateX(220%);
+      }
+    }
+  </style>
+</head>
+
+<body
+  class="bg-[#F5F6FA] dark:bg-[#141517] text-[#242424] dark:text-[#F3F4F6] antialiased selection:bg-[#FB7213]/25 selection:text-[#55321E] overflow-hidden font-sans">
+  <!-- Instant Startup Splash with Sheldon Logo + Loading Bar (no white flash) -->
+  <div id="sheldon-boot-splash" aria-hidden="true">
+    <svg width="136" height="104" viewBox="0 0 136 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="136" height="104" rx="22" fill="#FB7213" />
+      <path d="M25 46 C22 25 27 12 36 14 C44 16 51 24 55 32 C61 30 75 30 81 32 C85 24 92 16 100 14 C109 12 114 25 111 46 C115 58 113 78 102 88 C92 97 79 99 68 99 C57 99 44 97 34 88 C23 78 21 58 25 46 Z" fill="#FEDEAF" />
+      <path d="M36 22 C41 20 47 26 51 32 L35 37 C34 29 33 23 36 22 Z" fill="#FEB296" />
+      <path d="M100 22 C95 20 89 26 85 32 L101 37 C102 29 103 23 100 22 Z" fill="#FEB296" />
+      <path d="M68 30 C70 30 72 39 69 44 C66 39 66 30 68 30 Z" fill="#F68F28" />
+      <path d="M56 31 C58 31 61 37 59 42 C56 39 54 33 56 31 Z" fill="#F68F28" />
+      <path d="M80 31 C78 31 75 37 77 42 C80 39 82 33 80 31 Z" fill="#F68F28" />
+      <circle cx="51" cy="57" r="7.5" fill="#2D1E13" />
+      <circle cx="53" cy="54.5" r="2.3" fill="#FFFFFF" />
+      <circle cx="85" cy="57" r="7.5" fill="#2D1E13" />
+      <circle cx="87" cy="54.5" r="2.3" fill="#FFFFFF" />
+      <ellipse cx="68" cy="66" rx="5.5" ry="3.8" fill="#FB7213" />
+      <path d="M59 71 C62 75 66 75 68 70 C70 75 74 75 77 71" stroke="#55321E" stroke-width="2.5" stroke-linecap="round" fill="none" />
+    </svg>
+    <div class="splash-bar-wrap">
+      <div class="splash-bar-fill"></div>
+    </div>
+  </div>
+  <div id="root"></div>
+  <script type="module" src="/src/renderer/main.tsx"></script>
+</body>
+
+</html>
